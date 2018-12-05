@@ -3,6 +3,7 @@
 namespace app\index\controller;
 
 use app\common\model\Excel;
+use app\index\logicModel\PdfWeb;
 use app\common\model\MyAes;
 use app\index\logicModel\ExcelWeb;
 use think\Controller;
@@ -21,10 +22,16 @@ class Index extends Controller
     public function index(Request $request)
     {
         /***************************************  导入  ********************************************/
+
+        $re = new PdfWeb();
+        $re->pdfOut();
+        /***************************************  导入  ********************************************/
+
+        /***************************************  导入  ********************************************/
 //        $path = ROOT_PATH.'public\upload'.DS.'test.xls';
 //        $Aes =  new ExcelWeb();
 //        $re = $Aes->import($path);
-        /********************************************************************************************/
+        /***************************************  导入  ********************************************/
         /***************************************  导入  ********************************************/
 
         //$Aes->export([],[],'asdfasdf');//导出
