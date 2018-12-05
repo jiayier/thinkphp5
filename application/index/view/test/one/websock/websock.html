@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+
+
+
+
+<body>
+
+
+
+
+<script>
+
+    console.log('asdfsadfsf')
+    try {
+        ws = new WebSocket("ws://127.0.0.1:2346");
+        ws.onopen = function () {
+            console.log("连接成功");
+            ws.send('tom');
+            console.log("给服务端发送一个字符串：tom");
+            ws.send('保持连接，发第二次信息，查看服务器回应');
+
+        };
+        ws.onmessage = function (e) {
+            console.log("收到服务端的消息：" + e.data);
+        };
+    } catch (e) {
+        console.log(e)
+
+    } finally {
+    }
+
+
+
+</script>
+</body>
+</html>

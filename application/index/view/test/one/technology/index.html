@@ -1,0 +1,15 @@
+{extend name="one/layout" /}
+{block name="content"}
+<!-- START HOME -->
+<section id="technology" class="welcome-area">
+    <div class="welcome-slider-area" style="margin-top: 90px ">
+        {volist name="list" id="vo"}
+             {if empty($vo.article_detail.content)}
+                  {$vo.article_id}
+             {else}
+                  {$vo.article_detail.content}
+             {/if}
+        {/volist}
+    </div>
+</section>
+{/block}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="__INDEX__/js/huizhubang/jquery.min.js"></script>
+<script src="/static/common/js/aes.js"></script>
+<script src="/static/common/js/base64.js"></script>
+<script>
+    var sssss = {'name':'sadfasdfsf'}
+    var key = CryptoJS.enc.Utf8.parse("_Mikkle_AES_Key_");
+
+
+    // var decryptedData = CryptoJS.AES.decrypt(encryptedBase64Str, key, {
+    //     mode: CryptoJS.mode.ECB,
+    //     padding: CryptoJS.pad.Pkcs7
+    // });
+
+    // var decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8);
+    //
+    // console.log("解密后:"+decryptedStr);
+    //
+    //
+    // var pwd = "PCsUFtgog9/qpqmqXsuCRQ==";
+    // //加密服务端返回的数据
+    // var decryptedData = CryptoJS.AES.decrypt(pwd, key, {
+    //     mode: CryptoJS.mode.ECB,
+    //     padding: CryptoJS.pad.Pkcs7
+    // });
+
+   // console.log("解密服务端返回的数据:"+decryptedStr);
+
+    var data = {'json': encode(JSON.stringify(sssss)),'str':encode('asdfasdfasfee')}
+    $.ajax({
+        type: "post",
+        url: "{:url('index/index/test')}",
+        // url:base_url+'a=getToken&c=auther',l
+        //dataType:'json',
+        dataType: 'json',
+        headers: {},
+        async: false,
+        data: data,
+        success: function (data) {
+            var base = new Base64();
+            var result = base.decode(data.pp);
+            var decryptedData = CryptoJS.AES.decrypt(result, key, {
+                mode: CryptoJS.mode.ECB,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            var decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8);
+            decryptedStr =   decryptedStr.substring(0,decryptedStr.length-9)
+            var ssss = JSON.parse( decryptedStr );
+            console.log("解密服务端返回的数据:"+decryptedStr);
+            console.log(data)
+            console.log(ssss)
+        },
+        error: function (data) {
+            console.log(data)
+        }
+    });
+
+
+    function encode(data,type) {
+
+
+
+    //    var plaintText1 = 'ABCDEFGH'; // 明文
+     //   var plaintText = JSON.stringify(sssss); // 明文(json)
+
+        var encryptedData = CryptoJS.AES.encrypt(data, key, {
+            mode: CryptoJS.mode.ECB,
+            padding: CryptoJS.pad.Pkcs7
+        });
+
+        // console.log("加密前："+plaintText);
+        //  console.log("加密后："+encryptedData);
+
+        encryptedData = encryptedData.ciphertext.toString();
+
+        var encryptedHexStr = CryptoJS.enc.Hex.parse(encryptedData);
+        var encryptedBase64Str = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+        return encryptedBase64Str;
+    }
+
+
+
+
+
+</script>
+
+</body>
+</html>

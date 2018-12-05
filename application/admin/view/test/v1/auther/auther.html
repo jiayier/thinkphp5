@@ -1,0 +1,103 @@
+{extend name="layout" /}
+{block name="title"}
+
+{$title}
+{/block}
+{block name="content"}
+<div ng-app="myApp" ng-controller="myCtrl" xmlns="http://www.w3.org/1999/html">
+    <!--{include file="common/menu" /}-->
+    <form class="form-horizontal" novalidate/>
+       <fieldset>
+            <div class="control-group">
+                <label class="control-label" for="input1">title</label>
+                <div class="controls">
+                    <input type="text" id="input1" name="title" ng-model="user.title"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input2">auther</label>
+                <div class="controls">
+                    <input type="text" id="input2" name="auther" ng-model="user.auther"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input3">key</label>
+                <div class="controls">
+                    <input type="text" id="input3" name="key" ng-model="user.key"/>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div ng-click="submit(user,1)" class="btn btn-primary">添加用户</div>
+                <div ng-click="submit(user,2)" class="btn btn-primary">添加用户</div>
+                <div ng-click="submit(user,3)" class="btn btn-primary">添加用户</div>
+                <button type="reset" class="btn">Cancel</button>
+                <input type="hidden"  ng-model="user.article_id"/>
+            </div>
+       </fieldset>
+    </form>
+
+ <script type="text/ng-template" id="pop.html">
+ <div class="panel-heading">
+    <strong>{{title}}</strong>
+    </div>
+ <div class="col-sm-6" style="width: 100%">
+
+                  <div class="modal-footer">
+                        <button class="btn btn-primary" ng-click="ok(type)">
+                                           确认
+                                             </button>
+                            <button class="btn btn-warning" ng-click="cancel()">
+                                      取消
+                             </button>
+                  </div>
+ </div>
+</script>
+</div>
+{/block}
+
+{block name="js"}
+
+<script src="__JS__js/bootstrap.min.js"></script>
+<script src="__JS__js/lib/angular.min.js"></script>
+<!--<script src="__JS__js/lib/angular-ui-router.js"></script>-->
+<script src="__JS__js/lib/ui-bootstrap-tpls.js"></script>
+<!--<script src="__JS__js/lib/ui-bootstrap.min.js"></script>-->
+<script src="__JS__js/home/config.js"></script>
+<script>
+    app.controller('myCtrl', function ($scope,CalcService) {
+
+        var type = {'1':'User','2':'User','3':'User','4':'User'}
+        $scope.submit  = function (a,b) {
+            CalcService.openPop({'type':type[b]})
+        }
+    });
+    /*
+     * 弹框确定
+     */
+    app.controller('popCtrl', function ($scope, $modalInstance, data, $http,CalcService) {
+        $scope.data = data;
+        $scope.title = '添加用户';
+        $scope.type = data.type
+        console.log($scope.data)
+        //在这里处理要进行的操作
+        $scope.ok = function (a) {
+         var data =   {name:'zhangsan'}
+            CalcService.post("{:url('admin/v1.auther/addUser')}",'POST',data).then(function successCallback(response) {
+                // 请求成功执行代码
+                console.log(response.data)
+                $modalInstance.dismiss('cancel');
+
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+                console.log(response)
+            });
+        };
+        /**
+         * 弹框取消
+         */
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        }
+    })
+</script>
+{/block}

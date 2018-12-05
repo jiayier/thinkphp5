@@ -1,0 +1,197 @@
+{extend name="index/layout" /}
+{block name="base"}
+
+<div class="preloader">
+    <div class="status"></div>
+</div>
+<header>
+    <nav class="navbar respo-main-menu" role="navigation">
+        <div class="container">
+            <div id="nav-menu" class="navbar-collapse collapse fixed_nav" role="navigation">
+                <ul class="nav navbar-nav respo-menu-wrapper">
+                    <li>
+                        <a class="navbar-brand" href="{:url('admin/account/welcome')}"><img class="logo" id="logo" src="__INDEX__/images/huizhubang/index_02.png"></a>
+                    </li>
+                    <li>
+                        <a href="{:url('admin/account/welcome')}"><img src="__INDEX__/images/huizhubang/index_04.png"/></a>
+                    </li>
+                    <li>
+                        <!--<a href="{url 'user/login'}"><img src="__INDEX__/images/huizhubang/index_12.png"/></a>-->
+                        <a href="{:url('admin/user/login',['lang'=>$lang])}"><img src="__INDEX__/images/huizhubang/index_12.png"/></a>
+                    </li>
+                    <li>
+                        <a href="{php echo url('article/plug-show/about')}"><img src="__INDEX__/images/huizhubang/index_08.png"/></a>
+                    </li>
+                    <li>
+                        <a href="{php echo url('article/plug-show/download')}"><img src="__INDEX__/images/huizhubang/index_09.png"/></a>
+                    </li>
+                    <li>
+                        <a href="{php echo url('article/plug-show/product')}"><img src="__INDEX__/images/huizhubang/index_11.png"/></a>
+                    </li>
+                    <li>
+                        <a href="{php echo url('article/plug-show/message')}"><img src="__INDEX__/images/huizhubang/index_13.png"/></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<section class="slider-pro respo-slider" id="respo-slider">
+    <div class="head_nav">
+        <div class="nav_div">
+            <!--<a href="{url 'account/welcome'}" class="index_a"><img src="__INDEX__/images/huizhubang/index_04.png"/></a>-->
+            <a href="{:url('admin/account/welcome',['lang'=>'en'])}" class="index_a"><img src="__INDEX__/images/huizhubang/index_04.png"/></a>
+            <div class="logo_zhi"></div>
+        </div>
+        <div class="nav_div">
+            <a href="{php echo url('article/plug-show/download')}"><img src="__INDEX__/images/huizhubang/index_09.png"/></a>
+            <a href="{php echo url('article/plug-show/about')}"><img src="__INDEX__/images/huizhubang/index_08.png"/></a>
+            <a href="{:url('admin/user/login',['lang'=>$lang])}"><img src="__INDEX__/images/huizhubang/index_12.png"/></a>
+        </div>
+        <div class="nav_div">
+            <a href="{php echo url('user/login',array('lang'=>'en'))}"><img src="__INDEX__/images/huizhubang/index_12_en.png"/></a>
+            <a href="{php echo url('article/plug-show/product')}"><img src="__INDEX__/images/huizhubang/index_11.png"/></a>
+            <a href="{php echo url('article/plug-show/message')}"><img src="__INDEX__/images/huizhubang/index_13.png"/></a>
+        </div>
+    </div>
+    <div class="sp-slides">
+        <div class="respo-img-overlay"></div>
+        <img class="sp-image" src="__INDEX__/images/huizhubang/head_bg.png" alt="Slider 1"/>
+        <div class="head_zi">
+            <a class="app_a" href="#"></a>
+        </div>
+    </div>
+</section>
+<section class="respo-custom-sec respo-section-wrapper background-one">
+    <div class="shu_line"></div>
+    <div class="heng_line"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 respo-custom-sec-img wow bounceInLeft">
+                <img class="texiao1_zi" src="__INDEX__/images/huizhubang/texiao4_zi.png"/>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 respo-custom-sec-text wow bounceInRight texiao_r">
+                <img src="__INDEX__/images/huizhubang/index_15.png" alt="Custom Image">
+            </div>
+        </div>
+    </div>
+    <div class="shur_line"></div>
+</section>
+<section id="about" class="respo-section-wrapper background-two texiao_grey">
+    <img class="harf_img" src="__INDEX__/images/huizhubang/harf_cercle_03.png"/>
+    <div class="harf_line"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 respo-custom-sec-img wow bounceInLeft texiao3">
+                <img class="texiao3_img" src="__INDEX__/images/huizhubang/texiao3.png"/>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-12 respo-custom-sec-text wow bounceInRight texiao_r">
+                <img src="__INDEX__/images/huizhubang/texiao3_r.png" alt="Custom Image">
+            </div>
+        </div>
+    </div>
+</section>
+<section id="featured-works" class="respo-section-wrapper texiao_gaoxiao">
+    <div class="xie_line"></div>
+    <div class="shul_line"></div>
+    <div class="container">
+        <div class="row gaoxiao_row">
+            <div class="col-md-6 col-sm-6 col-xs-12 respo-custom-sec-img wow bounceInLeft texiao4">
+                <img class="texiao3_img" src="__INDEX__/images/huizhubang/gaoxiao_l.png"/>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-12 respo-custom-sec-text wow bounceInRight texiao_r">
+                <img src="__INDEX__/images/huizhubang/texiao4_img.png" alt="Custom Image">
+            </div>
+        </div>
+    </div>
+</section>
+<section id="offer" class="respo-section-wrapper respo-offer-section  background-two">
+    <img class="harf_img harf_img2" src="__INDEX__/images/huizhubang/harf_cercle_03.png"/>
+    <img class="harf_img harf_img3" src="__INDEX__/images/huizhubang/harf_cercle_03.png"/>
+    <div class="harf_line harf_line2"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 respo-section-header wow fadeInDown">
+                <h1><span class="respo-color-contras">猪场动态</span></h1>
+                <p class="col-md-8 col-sm-10 col-xs-12 col-md-offset-2 col-sm-offset-1">
+                <div class="shouzhang">— 手 掌 控 </div>
+                </p>
+            </div>
+            <div class="respo-service-wrapper">
+                <div class="col-md-4 col-sm-4 col-xs-12 wow bounceInLeft">
+                    <div class="respo-blurb-icon-only">
+                        <a href="{php echo url('article/plug-show/message')}">
+                            <img src="__INDEX__/images/huizhubang/yuan1.png"/>
+                        </a>
+                        <h3>数据录入</h3>
+                        <p>方便快捷进行数据录入操作</p>
+                    </div>
+                    <div class="respo-blurb-icon-only">
+                        <a href="{php echo url('article/plug-show/message')}">
+                            <img src="__INDEX__/images/huizhubang/yuan4.png"/>
+                        </a>
+                        <h3>商品猪管理</h3>
+                        <p>种猪批次管理，更科学更合理</p>
+                    </div>
+                    <div class="respo-blurb-icon-only">
+                        <a href="{php echo url('article/plug-show/message')}">
+                            <img src="__INDEX__/images/huizhubang/yuan7.png"/>
+                        </a>
+                        <h3>生产报表</h3>
+                        <p>多报表展示猪场动态，秒变养猪达人</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s">
+                    <div class="respo-blurb-icon-only">
+                        <a href="{php echo url('article/plug-show/message')}">
+                            <img src="__INDEX__/images/huizhubang/yuan2.png"/>
+                        </a>
+                        <h3>养猪日历</h3>
+                        <p>今日提醒，轻松完成今日养猪任务</p>
+                    </div>
+                    <div class="respo-blurb-icon-only">
+                        <a href="{php echo url('article/plug-show/message')}">
+                            <img src="__INDEX__/images/huizhubang/yuan5.png"/>
+                        </a>
+                        <h3>免疫管理</h3>
+                        <p>随时随地提醒您需要免疫的程序</p>
+                    </div>
+                    <div class="respo-blurb-icon-only">
+                        <a href="{php echo url('article/plug-show/message')}">
+                            <img src="__INDEX__/images/huizhubang/yuan8.png"/>
+                        </a>
+                        <h3>员工绩效</h3>
+                        <p>动态展示员工成绩</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 wow bounceInRight">
+                    <div class="respo-blurb-icon-only">
+                        <a href="{php echo url('article/plug-show/message')}">
+                            <img src="__INDEX__/images/huizhubang/yuan3.png"/>
+                        </a>
+                        <h3>种猪管理</h3>
+                        <p>种猪信息管理，数据的集中营</p>
+                    </div>
+                    <div class="respo-blurb-icon-only">
+                        <a href="{php echo url('article/plug-show/message')}">
+                            <img src="__INDEX__/images/huizhubang/yuan6.png"/>
+                        </a>
+                        <h3>存栏动态</h3>
+                        <p>一秒掌握猪场实时动态</p>
+                    </div>
+                    <div class="respo-blurb-icon-only">
+                        <a href="{php echo url('article/plug-show/message')}">
+                            <img src="__INDEX__/images/huizhubang/yuan9.png"/>
+                        </a>
+                        <h3>参数设定</h3>
+                        <p>更高效完成参数设定内容</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{/block}

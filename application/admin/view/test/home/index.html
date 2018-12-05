@@ -1,0 +1,94 @@
+{extend name="layout" /}
+{block name="title"}
+
+{$title}
+{/block}
+{block name="content"}
+<div ng-app="myApp" ng-controller="myCtrl">
+    {include file="common/menu" /}
+    <form class="form-horizontal" novalidate/>
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label" for="input1">title</label>
+            <div class="controls">
+                <input type="text" id="input1" name="title" ng-model="user.title"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="input2">auther</label>
+            <div class="controls">
+                <input type="text" id="input2" name="auther" ng-model="user.auther"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="input3">key</label>
+            <div class="controls">
+                <input type="text" id="input3" name="key" ng-model="user.key"/>
+            </div>
+        </div>
+        <div class="form-actions">
+            <div ng-click="submit(user,1)" class="btn btn-primary">add</div>
+            <div ng-click="submit(user,2)" class="btn btn-primary">update</div>
+            <div ng-click="submit(user,3)" class="btn btn-primary">delete</div>
+            <button type="reset" class="btn">Cancel</button>
+            <input type="hidden"  ng-model="user.article_id"/>
+        </div>
+    </fieldset>
+
+</div>
+{/block}
+
+{block name="js"}
+<script src="__JS__js/lib/angular.min.js"></script>
+
+<script src="__JS__js/home/config.js"></script>
+<script>
+    app.controller('myCtrl', function ($scope, CalcService, baseurl) {
+        $scope.user = {};
+        CalcService.post(baseurl + 'article/1', 'GET').then(function successCallback(response) {
+            // 请求成功执行代码
+            console.log(response.data)
+            $scope.user = response.data.data;
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+            console.log(response)
+        });
+        $scope.submit = function (s, a) {
+            var type = '';
+            var url = baseurl+'article/';
+            switch (a) {
+                case 1:
+                    type = 'POST';
+                    s['article_id']='';
+                    break;
+                    case 2:
+                    type = 'POST';
+                    break;
+                case 3:
+                    type = 'DELETE';
+                    break;
+                default:
+                    type  = 'GET';
+                    break;
+            }
+
+            console.log(s);
+            CalcService.post(url,  type ,s).then(function successCallback(response) {
+                // 请求成功执行代码
+                console.log(response.data)
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+                console.log(response)
+            });
+
+            // CalcService.post(baseurl+'article/'+8888,{sdfasdf:'asdfasdfasdf'}).then(function successCallback(response) {
+
+            // console.log(s);
+
+        }
+    });
+
+</script>
+
+
+{/block}

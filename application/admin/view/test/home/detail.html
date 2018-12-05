@@ -1,0 +1,141 @@
+{extend name="layout" /}
+{block name="title"}
+
+{$title}
+{/block}
+{block name="content"}
+<div ng-app="myApp" ng-controller="myCtrl">
+    {include file="common/menu" /}
+    <form class="form-horizontal" novalidate/>
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label" for="{{eid}}">auther</label>
+            <div class="controls">
+                <div ueditor id="{{eid}}"  config="{{config}}"  ></div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <div ng-click="submit(user,1)" class="btn btn-primary">add</div>
+            <div ng-click="submit(user,2)" class="btn btn-primary">update</div>
+            <div ng-click="submit(user,3)" class="btn btn-primary">delete</div>
+            <button type="reset" class="btn">Cancel</button>
+            <input type="hidden"  ng-model="user.article_id" />
+            <input type="hidden"  ng-model="user.art_id" />
+        </div>
+    </fieldset>
+    <button ng-click="getContent(eid)" >获取container2内容</button>
+    <!--<br/> <br/>-->
+    <!--<button ng-click="getContentTxt('container')" >获取container内容Txt</button>-->
+    <!--<button ng-click="getContentTxt('container1')" >获取container2内容Txt</button>-->
+    <!--<br/> <br/>-->
+
+
+</div>
+{/block}
+
+{block name="js"}
+<script src="__JS__js/lib/angular.min.js"></script>
+
+<script src="__JS__js/home/config.js"></script>
+
+
+
+<script type="text/javascript" src="/static/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/static/ueditor/ueditor.all.js"></script>
+<!-- 实例化编辑器 -->
+<script src="__JS__js/home/uedit.js"></script>
+<script>
+    app.controller('myCtrl', function ($scope, CalcService, baseurl) {
+        $scope.user = {'article_id':1};
+        $scope.eid = "container";
+        $scope.config={
+            //初始化编辑器内容
+            content : '',
+            //是否聚焦 focus默认为false
+            focus : true,
+            //首行缩进距离,默认是2em
+            indentValue:'2em',
+            //初始化编辑器宽度,默认1000
+            initialFrameWidth:1000,
+            //初始化编辑器高度,默认320
+            initialFrameHeight:320,
+            //编辑器初始化结束后,编辑区域是否是只读的，默认是false
+            readonly : false ,
+            //启用自动保存
+            enableAutoSave: false,
+            //自动保存间隔时间， 单位ms
+            saveInterval: 500,
+            //是否开启初始化时即全屏，默认关闭
+            fullscreen : false,
+            //图片操作的浮层开关，默认打开
+            imagePopup:true,
+            //提交到后台的数据是否包含整个html字符串
+            allHtmlEnabled:false,
+            //额外功能添加
+            functions :['map','insertimage','insertvideo','attachment',
+            ,'insertcode','webapp','template',
+            'background','wordimage']
+    };
+
+        $scope.getContent=function(id){
+            var content=$scope.ueditorGetContent(id);
+            alert(content);
+        }
+        $scope.getContentTxt=function(id){
+            var content=$scope.ueditorGetContentTxt(id);
+            alert(content);
+        }
+        $scope.setContent=function(){
+            $scope.ueditorSetContent("container","111111");
+        }
+        CalcService.post(baseurl + 'articleDetail/1', 'GET').then(function successCallback(response) {
+         //   请求成功执行代码
+            console.log(response.data)
+            $scope.user = response.data.data;
+            console.log( $scope.user.content)
+
+            $scope.ueditorSetContent($scope.eid,$scope.user.content,true)
+
+
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+            console.log(response)
+        });
+        $scope.submit = function (s, a) {
+            var type = '';
+            var url = baseurl + 'articleDetail/';
+
+            s['content'] = $scope.ueditorGetContent($scope.eid)
+
+            switch (a) {
+                case 1:
+                    type = 'POST';
+                    //  s['article_id']='';
+                    break;
+                case 2:
+                    type = 'POST';
+                    break;
+                case 3:
+                    type = 'DELETE';
+                    break;
+                default:
+                    type = 'GET';
+                    break;
+            }
+            CalcService.post(url, type, s).then(function successCallback(response) {
+                // 请求成功执行代码
+                console.log(response.data)
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+                console.log(response)
+            });
+
+        }
+     });
+
+</script>
+
+
+
+{/block}

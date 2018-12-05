@@ -1,0 +1,221 @@
+{extend name="one/layout" /}
+{block name="content"}
+<!-- START HOME -->
+<section id="technology" ng-controller="myCtrl" ng-app="myApp" class="welcome-area">
+    <form class="form-horizontal" role="form" style="margin-top:100px">
+        <div class="form-group">
+            <label for="firstname" class="col-sm-2 control-label">名字</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="user.f" id="firstname" placeholder="请输入名字">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="captcha" class="col-sm-2 control-label">验证码</label>
+            <div class="col-sm-10">
+                <div><img src="{:captcha_src()}" alt="captcha" /></div>
+                <input type="text" class="form-control" ng-model="user.captcha" id="captcha" placeholder="请输入名字">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname" class="col-sm-2 control-label">姓</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="user.name" id="lastname" placeholder="请输入姓">
+            </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">请记住我
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <!--<input type="hidden"ng-model="user.__token__" ng-value="{$Request.token}" />-->
+
+                <!--{:token('__token__');}-->
+                <button  ng-click="submit(user)" class="btn btn-default">登录</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="welcome-slider-area" style="margin-top: 90px ">
+        <!--<button class="btn btn-info" style="margin: 50px" ng-click="post(1)">asda</button>-->
+        <button class="btn btn-info" style="margin: 50px" onclick="post(1)">本地119</button>
+        <button class="btn btn-info" style="margin: 50px" onclick="post(2)">线上测试</button>
+        <button class="btn btn-info" style="margin: 50px" onclick="post(3)">线上</button>
+        <!--<button class="btn btn-info" style="margin: 50px" onclick="post1(1)">sss</button>-->
+
+
+
+    </div>
+</section>
+{/block}
+
+{block name="add-js"}
+
+<script data-main="__BASE__js/config1" src="/static/common/js/require.js"></script>
+<script src="__BASE__js/config-path.js?v=2"></script>
+{js href="__BASE__js/angular.min.js"}
+<script>
+    var app = angular.module('myApp', []);
+   // app.value("baseurl", 'http://www.weihuo.com/app/index.php?i=3&c=entry&do=Api&m=nonghuotongweihou&r=');
+    app.value("baseurl", 'http://www.zhubt.com/app/index.php?i=3&c=entry&do=goods&m=nonghuotongweihou&r=');
+
+    // app.value("baseurl", 'http://www.weihouyunbao.cn/app/index.php?i=3&c=entry&do=goods&m=nonghuotongweihou&r=');
+    app.factory('MathService', function () {
+        var factory = {};
+        factory.multiply = function (a, b) {
+            return a * b
+        }
+        return factory;
+    }).factory('Http', function ($http) {
+        var factory = {};
+        factory.post = function (url, data, type) {
+            return $http({
+                method: type,
+                url: url,
+                data: data,
+                // transformRequest: function (obj) {
+                //     var str = [];
+                //     for (var o in obj)
+                //         str.push(encodeURIComponent(o) + "=" + encodeURIComponent(obj[o]));
+                //     return str.join("&");
+                // },
+            });
+        }
+        factory.jsonp = function (url, data, type) {
+            url = url+'&jsonp=JSON_CALLBACK';
+            return $http.jsonp(url);
+        }
+        return factory;
+    }).factory('Url',function () {
+        var factory = {};
+        factory.jump = function (url) {
+            window.location.href=url;
+        }
+        return factory;
+    });
+
+
+    // 在 service 中注入 factory "MathService"
+    app.service('CalcService', function (MathService, Http,Url) {
+        this.square = function (a) {
+            return MathService.multiply(a, a);
+        }
+        this.post = function (url, type, data) {
+            return Http.post(url, data, type);
+        }
+        this.jsonp = function (url, type, data) {
+            return Http.jsonp(url, data, type);
+        }
+        this.jump = function (url) {
+            return Url.jump(url);
+        }
+    });
+
+
+
+    app.controller('myCtrl', function($scope,CalcService,baseurl) {
+        $scope.user={};
+       $scope.submit=function(a){
+            a.__token__="{$Request.token}"
+           console.log(a);
+
+           CalcService.post("{:url('index/one.websock/token')}","POST",a).then( function successCallback(response) {
+               // 请求成功执行代码
+               console.log(response)
+           }, function errorCallback(response) {
+               // 请求失败执行代码
+               console.log(response)
+           })
+
+
+       }
+      $scope.post=function (a) {
+          CalcService.post(baseurl+'car.index.main','POST',{'phone':15332371148}).then(function successJsoncallback(response){
+              console.log(response)
+
+
+          }, function successCallback(response) {
+              // 请求成功执行代码
+              console.log(response)
+          }, function errorCallback(response) {
+              // 请求失败执行代码
+              console.log(response)
+          });
+      }
+    })
+
+   function post(a){
+       require(['foo'],function (obj) {
+          var base= '';
+           switch (a){
+               case 1:
+                   base= 'http://www.zhubt.com/app/index.php?i=3&c=entry&do=goods&m=nonghuotongweihou&test=1&r=';
+                   break;
+               case 2:
+                   base= 'http://www.weihouyunbao.cn:888/app/index.php?i=3&c=entry&do=goods&m=nonghuotongweihou&test=1&r=';
+                   break;
+                   case 3:
+                   base= 'http://www.weihouyunbao.cn/app/index.php?i=3&c=entry&do=goods&m=nonghuotongweihou&test=1&r=';
+                   break;
+
+           }
+           console.log('asdfasdf'+a);
+         //  obj.run();
+           var datas= new Object();
+           datas.data= new Object();
+           datas.data.phone = '15332371148';
+           datas.data.pwd = 'sd456456';
+           datas.data.flag = 'phone';
+        //   student1.sex = '男';
+        //   base +='api.user.sendCode';
+         //  base +='api.user.register';
+    //       base +='api.user.checkLogin';
+          base +='api.tts.checkLogin';
+           // var student2= new Object();
+           // student2.name = '张三';
+           // student2.sex = '男';
+         //  list.data = datas;
+       //    console.log(list);
+          // console.log(JSON.stringify(list));
+           obj.run11(base,{'__input':JSON.stringify(datas)});
+       })
+   }
+
+
+
+   function post1() {
+
+
+
+
+
+       // require(['foo'],function (obj) {
+       //     var base= "{:url('index/one.websock/io')}"
+       //     // console.log('asdfasdf');
+       //     //  obj.run();
+       //     var x = $('#form').serialize();
+       //     var m = {}, idata;
+       //     var list=new Array(); //创建一个数组
+       //
+       //     var student1= new Object();
+       //     student1.name = '张三';
+       //     student1.sex = '男';
+       //     list[0] = student1;
+       //
+       //     var student2= new Object();
+       //     student2.name = '张三';
+       //     student2.sex = '男';
+       //     list[1] = student2;
+       //     console.log(JSON.stringify(list));
+       //     obj.run11(base,{'__input':JSON.stringify(list)});
+       // })
+   }
+
+</script>
+
+
+{/block}

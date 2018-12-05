@@ -1,0 +1,125 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{block name="title"}{$title}{/block}</title>
+    {css href="__BASE__css/bootstrap.css" /}
+    {js href="__BASE__js/jquery-2.1.4.min.js" /}
+    <title>Home</title>
+    <!-- Latest Bootstrap min CSS -->
+    <link rel="stylesheet" href="__MYJS__bootstrap/css/bootstrap.min.css">
+    <!-- Google Font -->
+    <link href="http://fonts.googleapis.com/css?family=Cousine:400,700|Montserrat:400,700" rel="stylesheet" type="text/css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="__MYJS__fonts/font-awesome.min.css">
+    <!-- venobox -->
+    <link rel="stylesheet" href="__MYJS__venobox/css/venobox.css" />
+    <!--- owl carousel Css-->
+    <link rel="stylesheet" href="__MYJS__owlcarousel/css/owl.carousel.css">
+    <link rel="stylesheet" href="__MYJS__owlcarousel/css/owl.theme.css">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="__MYJS__css/animate.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="__MYJS__css/style.css">
+    <!-- CSS FOR COLOR SWITCHER -->
+    <link rel="stylesheet" href="__MYJS__css/switcher/switcher.css">
+    <link rel="stylesheet" href="__MYJS__css/switcher/style1.css" id="colors">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .active{
+            color:#03a9f4 !important;
+            font-size: 14px !important;
+        }
+        .unactive{
+            color: white  !important;
+            font-size: 14px !important;
+        }
+    </style>
+
+</head>
+<body data-spy="scroll" data-offset="80">
+{block name="base"}
+<div class="preloader">
+    <div class="status">
+        <div class="status-mes"><h4>sl</h4></div>
+    </div>
+</div>
+<!-- START NAVBAR -->
+<div class="navbar navbar-default navbar-fixed-top menu-top" style="background-color: #3ab3df" >
+    <div class="container">
+        <div class="navbar-header">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">-->
+                <!--<span class="sr-only">sadfasdfasdf</span>-->
+                <!--<span class="icon-bar">sadfasdf</span>-->
+                <!--<span class="icon-bar">ssssssssssssss</span>-->
+                <!--<span class="icon-bar">sssssssss</span>-->
+            <!--</button>-->
+            <a href="index.html" class="navbar-brand"><img src="__MYJS__img/logo.png" alt="logo"></a>
+        </div>
+        <div class="navbar-collapse collapse" >
+            <nav>
+                <ul class="nav navbar-nav navbar-right">
+                    <!--<li><a class="page-scroll" href="{:url('index/one.home/index')}">主页</a></li>-->
+                    <li><a {$url == url('index/one.home/index') ?'class="page-scroll active"':'class="page-scroll unactive"'}  href="{:url('index/one.home/index')}">主页</a></li>
+                    <li><a {$url == url('index/one.technology/index') ?'class="page-scroll active"':'class="page-scroll unactive"'} href="{:url('index/one.technology/index')}">技术流</a></li>
+                    <li><a {$url == url('index/one.websock/websock') ?'class="page-scroll active"':'class="page-scroll unactive"'} href="{:url('index/one.websock/websock')}">websock</a></li>
+                    <li><a {$url == url('index/one.websock/test') ?'class="page-scroll active"':'class="page-scroll unactive"'} href="{:url('index/one.websock/test')}">test</a></li>
+                    <li><a {$url == url('index/one.home/test') ?'class="page-scroll active"':'class="page-scroll unactive"'} href="{:url('index/one.websock/home')}">home</a></li>
+                    <!--<li><a class="page-scroll" href="#portfolio">works</a></li>-->
+                    <!--<li><a class="page-scroll" href="#team">Team</a></li>-->
+                    <!--<li><a class="page-scroll" href="#pricing">Pricing</a></li>-->
+                    <!--<li><a class="page-scroll" href="#blog">Blog</a></li>-->
+                    <!--<li><a class="page-scroll" href="#contact">Contact</a></li>-->
+                    <!--<li class="unactiv"><a class="page-scroll" href="#about">About</a></li>-->
+                </ul>
+            </nav>
+        </div>
+    </div><!--- END CONTAINER -->
+</div>
+<!-- END NAVBAR -->
+{/block}
+
+{block name="content"}
+
+{/block}
+{block name="js"}
+<!-- Latest jQuery -->
+<script src="__MYJS__js/jquery-1.12.4.min.js"></script>
+<!-- Latest compiled and minified Bootstrap -->
+<script src="__MYJS__bootstrap/js/bootstrap.min.js"></script>
+<!-- modernizer JS -->
+<script src="__MYJS__js/modernizr-2.8.3.min.js"></script>
+<!-- venobox js -->
+<script src="__MYJS__venobox/js/venobox.min.js"></script>
+<!-- jquery appear js  -->
+<script src="__MYJS__js/jquery.appear.js"></script>
+<!-- countTo js -->
+<script src="__MYJS__js/jquery.inview.min.js"></script>
+<!-- jquery mixitup js -->
+<script src="__MYJS__js/jquery.mixitup.js"></script>
+<!-- owl-carousel min js  -->
+<script src="__MYJS__owlcarousel/js/owl.carousel.min.js"></script>
+<!-- scrolltopcontrol js -->
+<script src="__MYJS__js/scrolltopcontrol.js"></script>
+<!-- WOW - Reveal Animations When You Scroll -->
+<script src="__MYJS__js/wow.min.js"></script>
+<!-- form-contact js -->
+<script src="__MYJS__js/form-contact.js"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwIQh7LGryQdDDi-A603lR8NqiF3R_ycA"></script>- -->
+<!-- switcher js -->
+<script src="__MYJS__js/switcher.js"></script>
+<!-- scripts js -->
+<script src="__MYJS__js/scripts.js"></script>
+{/block}
+
+{block name="add-js"}
+
+{/block}
+
+</body>
+</html>
