@@ -29,9 +29,10 @@ class Excel
     const HORIZONTAL_CENTER = 'center';
     public $types = ['xls','xlsx'];
 
+    static  protected  $Phpexcel = '';
+
     public function import($path)
     {
-
         try {
             $objPHPExcel = \PHPExcel_IOFactory::load($path);
             $sheet = $objPHPExcel->getSheet(0);//获取行数与列数,注意列数需要转换
@@ -101,8 +102,7 @@ class Excel
     public function export($data, $obj,$name,$type='xls')
     {
         try {
-            $objPHPExcel = new PHPExcel();
-            $objPHPExcel = $obj->dataFormat($data, $objPHPExcel);
+            $objPHPExcel = $obj->dataFormat($data);
             if ($type == 'xls') {
                 ob_end_clean();//这一步非常关键，用来清除缓冲区防止导出的excel乱码
                 header('Content-Type: application/vnd.ms-excel');
@@ -123,6 +123,12 @@ class Excel
             return false;
         }
     }
-
+    public static function  getPHPExcel(){
+        return self::createPhpExcel();
+    }
+    private static function createPhpExcel(){
+        if (!self::$Phpexcel) self::$Phpexcel = new PHPExcel();
+        return self::$Phpexcel;
+    }
 
 }

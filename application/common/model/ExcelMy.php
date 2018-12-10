@@ -12,5 +12,5 @@ namespace app\common\model;
 
 interface ExcelMy
 {
-    public function dataFormat($data,$obj);
+    public function dataFormat($data);
 }

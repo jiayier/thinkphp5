@@ -43,36 +43,36 @@ class Index extends Controller
 
 
         /***************************************  静态工厂模式--工厂模式（factory pattern）  ********************************************/
-        $man = SimpleFactoty::createMan();
-        $Women = SimpleFactoty::createWomen();
-
-        echo $man->say() . PHP_EOL . '<br>';
-        echo $Women->say() . PHP_EOL . '<br>';
+//        $man = SimpleFactoty::createMan();
+//        $Women = SimpleFactoty::createWomen();
+//
+//        echo $man->say() . PHP_EOL . '<br>';
+//        echo $Women->say() . PHP_EOL . '<br>';
         /********************************************************************************************/
         /***************************************  单例模式（ singleton pattern）  ********************************************/
-        $og = Single::getinstance();
-        $ob = Single::getinstance();
-        $og->setname('hello world');
-        $ob->setname('good morning');
-        echo $og->getname() . PHP_EOL . '<br>';//good morning
-        echo $ob->getname() . PHP_EOL . '<br>';//good morning
+//        $og = Single::getinstance();
+//        $ob = Single::getinstance();
+//        $og->setname('hello world');
+//        $ob->setname('good morning');
+//        echo $og->getname() . PHP_EOL . '<br>';//good morning
+//        echo $ob->getname() . PHP_EOL . '<br>';//good morning
         /********************************************************************************************/
         /***************************************  注册模式（Registration  pattern）  ********************************************/
-        $re = new Register();//全局
-        $re::set('sss', $man);
-        dump($re::get('sss')->say());
-        $re = new Register();
-        dump($re::get('sss')->say());
+//        $re = new Register();//全局
+//        $re::set('sss', $man);
+//        dump($re::get('sss')->say());
+//        $re = new Register();
+//        dump($re::get('sss')->say());
 
         /********************************************************************************************/
         /***************************************  适配器模式（adapter pattern）  ********************************************/
         /***************************************  观察者模式（Observer pattern）  ********************************************/
-        $event = new Event();
-        $event->addObserver(new Observer1());
-        $event->addObserver(new Observer2());
-       $event->triger();
-       $event->notify();
-        $event->last();
+//        $event = new Event();
+//        $event->addObserver(new Observer1());
+//        $event->addObserver(new Observer2());
+//       $event->triger();
+//       $event->notify();
+//        $event->last();
         /********************************************************************************************/
 
 
@@ -87,10 +87,12 @@ class Index extends Controller
 //        $path = ROOT_PATH.'public\upload'.DS.'test.xls';
 //        $Aes =  new ExcelWeb();
 //        $re = $Aes->import($path);
+//        dump($re);
         /***************************************  导入  ********************************************/
         /***************************************  导入  ********************************************/
+        $Aes =  new ExcelWeb();
 
-        //$Aes->export([],[],'asdfasdf');//导出
+        $Aes->export([],[],'asdfasdf');//导出
         // dump($re);
         //  dump($Aes->decode($re));
         /********************************************************************************************/

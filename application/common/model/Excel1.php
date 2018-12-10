@@ -24,6 +24,7 @@ class Excel1
     const HORIZONTAL_LEFT              = 'left';
     const HORIZONTAL_RIGHT             = 'right';
     const HORIZONTAL_CENTER            = 'center';
+    static  protected  $Phpexcel = '';
 
     public $types = ['xls','xlsx'];
 
@@ -156,6 +157,12 @@ class Excel1
         fclose($file);
         exit();
     }
-
+    public static function  getPHPExcel(){
+        return self::createPhpExcel();
+    }
+    private static function createPhpExcel(){
+        if (!self::$Phpexcel) self::$Phpexcel = new \PHPExcel();
+        return self::$Phpexcel;
+    }
 
 }

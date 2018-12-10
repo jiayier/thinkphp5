@@ -14,13 +14,9 @@ class Tcpdf
 {
     public function import($lan='en',$name='asdfasd',$html='',$filename='asdfasdasdfasdasdfsdfsdfsdfsdf')
     {
-
-
         Loader::import('tcpdf.tcpdf');
         $pdf = new \TCPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
-
-
         try {
             switch ($lan) {
                 case 'en':
