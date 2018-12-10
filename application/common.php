@@ -140,3 +140,17 @@ if (!function_exists('getFileFix')) {
       return  strrpos($file, '.') ? substr($file, strrpos($file, '.')+1) : '';//后缀;
     }
 }
+
+
+if (!function_exists('fomartError')) {
+    /**
+     * 获取文件的后缀
+     * @param $file
+     * @auther sl
+     * @return bool|string
+     */
+    function fomartError($e)
+    {
+      return sprintf('ErrorFile:%s;<br>ErrorLine:%s;<br>Error:%s',$e->getFile(),$e->getLine(),$e->getMessage());//后缀;
+    }
+}
